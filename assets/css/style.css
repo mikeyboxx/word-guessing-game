@@ -1,0 +1,44 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+#wrapper {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+}
+
+#top-word-container {
+    display: flex; 
+    text-align: center; 
+    padding: 40px; 
+    justify-content: center;
+    overflow: auto;
+}
+
+#game-msg {
+    font-size: 100px; 
+    margin: 15px; 
+    text-align: center; 
+    color: red;
+}
+
+#button {
+    margin-top: 20px; 
+    width: 100px; 
+    height: 100px;
+}
+
+#timer {
+    font-size: 100px; 
+    margin: 15px; 
+    text-align: center; 
+    color: red; 
+    visibility:hidden;
+}        
+
+h1 {
+    text-align: center;
+}

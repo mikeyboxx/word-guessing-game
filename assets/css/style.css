@@ -10,12 +10,24 @@
     align-items: center;
 }
 
+#timer {
+    font-size: 100px; 
+    margin: 15px; 
+    text-align: center; 
+    color: red; 
+    visibility:hidden;
+}   
+
 #top-word-container {
     display: flex; 
     text-align: center; 
     padding: 40px; 
     justify-content: center;
     overflow: auto;
+}
+
+#user-char {
+    font-size: 150px;
 }
 
 #game-msg {
@@ -31,13 +43,7 @@
     height: 100px;
 }
 
-#timer {
-    font-size: 100px; 
-    margin: 15px; 
-    text-align: center; 
-    color: red; 
-    visibility:hidden;
-}        
+     
 
 h1 {
     text-align: center;

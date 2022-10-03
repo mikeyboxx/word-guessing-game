@@ -4,8 +4,12 @@ var gameMsgEl = document.getElementById('game-msg');
 var userCharEl = document.getElementById('user-char');
 var startBtnEl = document.getElementById('button');
 var timerEl = document.getElementById('timer');
+var winsEl = document.getElementById('wins');
+var lossesEl = document.getElementById('losses');
 
 // initialize globals
+var wins = 0;
+var losses = 0;
 var randomWord = '';
 var topElArr = [];
 var guessedCharsArr = [];
@@ -13,7 +17,7 @@ var nbrOfGuessedChars = 0;
 var winner = false;
 var lastIdx = -1;
 var timer = {};
-var TIMER_SECS = 20;
+var TIMER_SECS = 30;
 var timerCountDown = TIMER_SECS;
 var MAX_WORD_LENGTH = 5;
 var MIN_WORD_LENGTH = 3;
@@ -35,17 +39,18 @@ function initializeGame(){
         var el = document.createElement('p');
         el.textContent = '_';
         el.setAttribute('id',`elT${i}`);
-        el.setAttribute('style','font-size: 150px; margin: 15px; flex 0 1;');
+        el.setAttribute('style','font-size: 100px; margin: 15px; flex 0 1;');
         topWordContainerEl.appendChild(el);
        
-        el.addEventListener('click', function (){
-            return function (obj){
-                console.log('click');
-                console.log(obj);
-                (obj.toggle === 0) ? obj.toggle = 1 : obj.toggle = 0; 
-                (obj.toggle === 0) ? this.style.color = 'red' : this.style.color = 'black';
-            }.bind(el, { toggle: 1})
-        }());
+        // add event listener with state
+        // el.addEventListener('click', function (){
+        //     return function (obj){
+        //         console.log('click');
+        //         console.log(obj);
+        //         (obj.toggle === 0) ? obj.toggle = 1 : obj.toggle = 0; 
+        //         (obj.toggle === 0) ? this.style.color = 'red' : this.style.color = 'black';
+        //     }.bind(el, { toggle: 1})
+        // }());
         
         topElArr.push(el);
     }
@@ -67,10 +72,11 @@ function startTimer(){
     timer = setInterval(function (){
         timerCountDown--;
         timerEl.textContent = timerCountDown;
-        if (timerCountDown === 1) {
+        if (timerCountDown === 0) {
             if (!winner) {
                 gameMsgEl.textContent = 'YOU LOSE!!!';
                 winner = !winner;
+                lossesEl.textContent = ++losses;
                 userCharEl.textContent = randomWord.toUpperCase();
             }
             clearInterval(timer);
@@ -107,6 +113,7 @@ var keypressCallback = function (event){
     // if all chars were guessed correctly then set the winner flag 
     if (nbrOfGuessedChars === guessedCharsArr.length){
         gameMsgEl.textContent = 'YOU WIN!!!';
+        winsEl.textContent = ++wins;
         clearInterval(timer);  // stop the countdown clock
         winner = !winner;
     } else {
